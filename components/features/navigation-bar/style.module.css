@@ -1,0 +1,12 @@
+.logoContainer {
+  /* columns: 2;
+  column-gap: 0; */
+  column-fill: balance;
+  column-rule: 1.5px solid #ffff;
+  align-self: center;
+  cursor: pointer;
+}
+
+.alignCenter {
+  text-align: -webkit-center;
+}
