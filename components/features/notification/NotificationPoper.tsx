@@ -25,6 +25,7 @@ const NotificationPoper = async () => {
         }
         const result = await response.json();
         setData(result);
+        console.log('result image', result);
       } catch (err: any) {
         setError(err.message);
       } finally {
@@ -33,8 +34,11 @@ const NotificationPoper = async () => {
     };
 
     fetchData();
+    const intervalId = setInterval(fetchData, 30000); // 30 giây
+
+    return () => clearInterval(intervalId);
   }, []);
-  console.log('image', data);
+
   return (
     <Popover>
       <PopoverTrigger asChild>
