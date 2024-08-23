@@ -3,18 +3,33 @@ import { Chart } from "@/components/features/chart/Charts";
 import { IDashboard } from '@/types/dashboard.type';
 
 async function getDashboardData() {
-  var d = new Date,
-    dformat = [d.getMonth() + 1,
-    d.getDate(),
-    d.getFullYear()].join('-') + ' ' +
-      [d.getHours(),
-      d.getMinutes(),
-      d.getSeconds()].join(':');
+  let today = new Date;
+  let fromDateFormated = [
+    today.getFullYear(),
+    (today.getMonth().toString().length === 1 ? '0' + (today.getMonth() + 1).toString() : today.getMonth()+ 1),
+    today.getDate()
+  ].join('-') + ' ' +
+    [
+      today.getHours(),
+      today.getMinutes() - 5,
+      today.getSeconds()
+    ].join(':');
+  let toDateFormated = [
+    today.getFullYear(),
+    (today.getMonth().toString().length === 1 ? '0' + (today.getMonth() + 1).toString() : today.getMonth()+ 1),
+    today.getDate()
+  ].join('-') + ' ' +
+    [
+      today.getHours(),
+      today.getMinutes(),
+      today.getSeconds()
+    ].join(':');
   const params = {
-    from_date: dformat,
-    to_date: dformat
+    from_date: fromDateFormated.replace(' ',"%20").replace(':', '%3A'),
+    to_date: toDateFormated.replace(' ',"%20").replace(':', '%3A')
   };
 
+  console.log('request', `http://127.0.0.1:8000/performances?from_date=${params.from_date}&to_date=${params.to_date}`);
   const res = await fetch(`http://127.0.0.1:8000/performances?from_date=${params.from_date}&to_date=${params.to_date}`);
   return res.json();
 }
