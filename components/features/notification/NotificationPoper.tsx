@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import {
   Popover,
   PopoverContent,
@@ -9,36 +9,26 @@ import { IconNotification } from "@/components/icons";
 import Image from 'next/image';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useEffect, useState } from "react";
+import { getNotification } from "@/services/notification";
 
-const NotificationPoper = async () => {
+const NotificationPoper = () => {
   const [data, setData] = useState<{image_base64: string | undefined}>({
     image_base64: undefined
   });
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`http://127.0.0.1:8000/anomaly-plot`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch data');
-        }
-        const result = await response.json();
-        setData(result);
-        console.log('result image', result);
-      } catch (err: any) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
 
-    fetchData();
-    const intervalId = setInterval(fetchData, 30000); // 30 giây
+  const getData = async () => {
+    const res = await getNotification();
+    if (res && res.image_base64) {
+      setData({ image_base64: res.image_base64 });
+    }
+  }
+  useEffect(() => {
+    getData();
+    const intervalId = setInterval(getData, 30000); // 30 giây
 
     return () => clearInterval(intervalId);
   }, []);
-
+  console.log('image', data);
   return (
     <Popover>
       <PopoverTrigger asChild>
