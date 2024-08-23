@@ -1,7 +1,7 @@
 "use client";
 // import Image from "next/image";
 import styles from './style.module.css';
-import { IconNotification } from "@/components/icons";
+// import { IconNotification } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import MobileMenu from "../menu/mobile-menu";
@@ -10,6 +10,7 @@ import User from "../user/user";
 // import Search from "./search";
 // import Menu from "../menu/desktop-menu";
 import { Bars3Icon } from "@heroicons/react/20/solid";
+import NotificationPoper from '../notification/NotificationPoper';
 
 const NavigationBar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -37,7 +38,8 @@ const NavigationBar = () => {
               )}
               data-ripple-dark="true"
             >
-              <IconNotification width={''} height='25px' />
+              {/* <IconNotification width={''} height='25px' /> */}
+              <NotificationPoper />
             </button>
             <User />
           </div>

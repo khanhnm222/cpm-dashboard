@@ -12,7 +12,7 @@ const User = () => {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <button type="button" className="dropdown-toggle flex items-center">
+        <button type="button" className=" flex items-center">
           <div className="flex-shrink-0 w-10 h-10 relative">
             <div className="p-1 bg-white rounded-full focus:outline-none focus:ring">
               <img className="w-8 h-8 rounded-full" src="https://laravelui.spruko.com/tailwind/ynex/build/assets/images/faces/9.jpg" alt="" />
@@ -21,12 +21,12 @@ const User = () => {
             </div>
           </div>
           <div className="p-2 md:block text-left">
-            <h2 className="text-sm font-semibold text-gray-800">Khanh</h2>
+            {/* <h2 className="text-sm font-semibold text-gray-800">Khanh</h2> */}
             {/* <p className="text-xs text-gray-500">Administrator</p> */}
           </div>
         </button>
       </PopoverTrigger>
-      <PopoverContent className="w-[11rem]">
+      {/* <PopoverContent className="w-[11rem]">
         <div className="grid gap-4 justify-center">
           <div className="grid gap-2 cursor-pointer px-2">
             <div className="items-center gap-4">
@@ -78,7 +78,7 @@ const User = () => {
             </div>
           </div>
         </div>
-      </PopoverContent>
+      </PopoverContent> */}
     </Popover>
   );
 };
