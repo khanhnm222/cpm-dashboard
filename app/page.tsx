@@ -1,29 +1,13 @@
 import { promises as fs } from 'fs';
 import { Chart } from "@/components/features/chart/Charts";
 import { IDashboard } from '@/types/dashboard.type';
+import moment from 'moment';
 
 async function getDashboardData() {
   let today = new Date;
-  let fromDateFormated = [
-    today.getFullYear(),
-    (today.getMonth().toString().length === 1 ? '0' + (today.getMonth() + 1).toString() : today.getMonth()+ 1),
-    today.getDate()
-  ].join('-') + ' ' +
-  [
-    (today.getHours().toString().length === 1 ? '0' + (today.getHours()).toString() : today.getHours()),
-    ((today.getMinutes() - 5).toString().length === 1 ? '0' + (today.getMinutes() - 5).toString() : (today.getMinutes() - 5)),
-    (today.getSeconds().toString().length === 1 ? '0' + (today.getSeconds()).toString() : today.getSeconds()),
-  ].join(':');
-  let toDateFormated = [
-    today.getFullYear(),
-    (today.getMonth().toString().length === 1 ? '0' + (today.getMonth() + 1).toString() : today.getMonth()+ 1),
-    today.getDate()
-  ].join('-') + ' ' +
-    [
-      (today.getHours().toString().length === 1 ? '0' + (today.getHours()).toString() : today.getHours()),
-      (today.getMinutes().toString().length === 1 ? '0' + (today.getMinutes()).toString() : today.getMinutes()),
-      (today.getSeconds().toString().length === 1 ? '0' + (today.getSeconds()).toString() : today.getSeconds()),
-    ].join(':');
+  
+  const fromDateFormated = moment().format('YYYY-MM-DD HH:mm:ss');
+  const toDateFormated = moment().subtract(5, 'minutes').format('YYYY-MM-DD HH:mm:ss');
   const params = {
     from_date: fromDateFormated.replace(' ',"%20").replaceAll(':', '%3A'),
     to_date: toDateFormated.replace(' ',"%20").replaceAll(':', '%3A')
@@ -31,6 +15,8 @@ async function getDashboardData() {
 
   console.log('request', `http://127.0.0.1:8000/performances?from_date=${params.from_date}&to_date=${params.to_date}`);
   const res = await fetch(`http://127.0.0.1:8000/performances?from_date=${params.from_date}&to_date=${params.to_date}`);
+
+  
   return res.json();
 }
 
@@ -39,10 +25,9 @@ export default async function Home() {
   const dummyData = JSON.parse(file) as IDashboard[];
 
   const datasource = await getDashboardData();
-
   console.log('datasource', datasource);
 
-  const finalData: any = datasource ?? dummyData;
+  const finalData: any = datasource || dummyData;
   const memoryData = [
     Number((finalData[finalData.length - 1]?.memory_used / 1073741824).toFixed(2)),
     Number((finalData[finalData.length - 1]?.memory_free / 1073741824).toFixed(2))
