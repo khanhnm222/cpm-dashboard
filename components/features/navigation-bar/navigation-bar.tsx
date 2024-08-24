@@ -31,7 +31,7 @@ const NavigationBar = () => {
       <div className="flex-none h-full text-center flex items-center justify-center">
         <div className="flex space-x-3 items-center px-3">
           <div className="flex-none flex justify-center gap-1 items-center">
-            <button className={
+            <div className={
               cn(
                 'h-8 max-h-[32px] w-8 max-w-[32px] select-none rounded-full text-center align-middle font-sans text-xs font-medium uppercase text-primary transition-all ',
                 'hover:bg-gray-500/10 active:bg-gray-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none',
@@ -41,7 +41,7 @@ const NavigationBar = () => {
             >
               {/* <IconNotification width={''} height='25px' /> */}
               <NotificationPoper />
-            </button>
+            </div>
             <User />
           </div>
           <div className="lg:hidden md:hidden cursor-pointer">

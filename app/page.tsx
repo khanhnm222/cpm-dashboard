@@ -162,20 +162,21 @@ export default async function Home() {
       },
       labels: ['Memory used', 'Memory free'],
       legend: {
-        customLegendItems: ['Memory used', 'Memory free']
+        customLegendItems: ['Memory used', 'Memory free'],
+        position: 'bottom',
       }
     }
   };
   return (
     <main className="flex flex-col items-center justify-between p-24 bg-[#e5e7eb]">
-      <div className='flex h-[calc(100vh_-_64px)] md:flex-col sm:flex-col flex-col lg:flex-row gap-8 items-center bg-[#e5e7eb]'>
+      <div className='flex h-[calc(100vh_-_64px)] md:flex-col sm:flex-col flex-col lg:flex-row gap-4 items-center bg-[#e5e7eb]'>
         <Chart
           type='donut'
           options={donutState.options as any}
           series={donutState.series}
           className='flex self-start'
         />
-        <div className='flex flex-col self-start gap-8'>
+        <div className='flex flex-col self-start gap-4'>
           <Chart type='line' series={byteState.series as any} options={byteState.options as any} />
           <Chart type='line' series={cpuState.series as any} options={cpuState.options as any} />
         </div>

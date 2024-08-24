@@ -49,14 +49,14 @@ export function Chart({
 
   const getWidth = () => {
     if (type === 'donut') {
-      return 500;
+      return 300;
     }
     return 1200;
   };
 
   return (
     <div className={cn(
-      'border-2 rounded-lg p-4 bg-white',
+      'border-2 rounded-lg p-2 bg-white',
       className
     )}>
       <ApexChart type={type} options={options} series={series} height={315} width={getWidth()} />
