@@ -22,7 +22,7 @@ const NavigationBar = () => {
       )}
       >
         {/* <Image src={logo} width={100} height={100} alt="logo" onClick={() => router.push('/', { scroll: false })} /> */}
-        Dashboard
+        Computer Performance Measurement Dashboard
       </div>
       <div className="hidden md:flex lg:flex grow h-full items-center justify-center">
         {/* <Menu /> */}
@@ -33,7 +33,8 @@ const NavigationBar = () => {
           <div className="flex-none flex justify-center gap-1 items-center">
             <button className={
               cn(
-                'h-8 max-h-[32px] w-8 max-w-[32px] select-none rounded-full text-center align-middle font-sans text-xs font-medium uppercase text-primary transition-all hover:bg-gray-500/10 active:bg-gray-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none',
+                'h-8 max-h-[32px] w-8 max-w-[32px] select-none rounded-full text-center align-middle font-sans text-xs font-medium uppercase text-primary transition-all ',
+                'hover:bg-gray-500/10 active:bg-gray-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none',
                 styles.alignCenter
               )}
               data-ripple-dark="true"

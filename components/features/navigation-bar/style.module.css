@@ -9,4 +9,7 @@
 
 .alignCenter {
   text-align: -webkit-center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

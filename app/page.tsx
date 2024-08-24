@@ -160,6 +160,7 @@ export default async function Home() {
       chart: {
         id: 'apexchart-pie',
       },
+      labels: ['Memory used', 'Memory free'],
       legend: {
         customLegendItems: ['Memory used', 'Memory free']
       }
