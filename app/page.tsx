@@ -24,7 +24,11 @@ export default async function Home() {
   const file = await fs.readFile(process.cwd() + '/dummy/response.json', 'utf8');
   const dummyData = JSON.parse(file) as IDashboard[];
 
-  const datasource = await getDashboardData();
+  const datasource = async () => {
+    return setInterval(async () => {
+      return await getDashboardData()
+    }, 5000);
+  };
   console.log('datasource', datasource);
 
   const finalData: any = datasource || dummyData;
