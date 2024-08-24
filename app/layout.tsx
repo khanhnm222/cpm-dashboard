@@ -5,7 +5,6 @@ import { Inter as FontSans } from "next/font/google"
 import { cn } from "@/lib/utils";
 import NavigationBar from "@/components/features/navigation-bar/navigation-bar";
 import { Suspense } from "react";
-import Loading from "@/components/features/loading/loading";
 
 const inter = Inter({ subsets: ["latin"] });
 const fontSans = FontSans({
@@ -32,7 +31,7 @@ export default function RootLayout({
       )}
       suppressHydrationWarning
       >
-        <Suspense fallback={<Loading />}>
+        <Suspense fallback={null}>
           <NavigationBar />
           {children}
         </Suspense>

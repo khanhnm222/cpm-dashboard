@@ -1,4 +1,4 @@
-'use client';
+import useSWR from 'swr'
 import {
   Popover,
   PopoverContent,
@@ -8,32 +8,26 @@ import { Label } from "@/components/ui/label";
 import { IconNotification } from "@/components/icons";
 import Image from 'next/image';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { useEffect, useState } from "react";
-import { getNotification } from "@/services/notification";
+
+const fetcher = (...args: any) => fetch(args).then((res) => res.json())
 
 const NotificationPoper = () => {
-  const [data, setData] = useState<{image_base64: string | undefined}>({
-    image_base64: undefined
-  });
-
-  const getData = async () => {
-    const res = await getNotification();
-    if (res && res.image_base64) {
-      setData({ image_base64: res.image_base64 });
-    }
-  }
-  useEffect(() => {
-    getData();
-    const intervalId = setInterval(getData, 30000); // 30 giây
-
-    return () => clearInterval(intervalId);
-  }, []);
+  // const [data, setData] = useState<{image_base64: string | undefined}>({
+  //   image_base64: undefined
+  // });
+  const { data } = useSWR('http://127.0.0.1:8000/anomaly-plot', fetcher)
   console.log('image', data);
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <button type="button" className="flex justify-center items-center">
-          <IconNotification width={''} height='25px' />
+        <button type="button" className="flex justify-center items-center" >
+          <IconNotification width={'30px'} height='25px' />
+          {data?.image_base64 ? (
+            <div className="absolute px-[0.5rem] bg-red-500 rounded-full text-center text-white text-sm -mr-[20px] -mt-[25px]">
+              1
+              <div className="rounded-full z-10 animate-ping bg-red-300 w-full h-full" ></div>
+            </div>
+          ) : null}
         </button>
       </PopoverTrigger>
       {data?.image_base64 ? (

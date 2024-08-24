@@ -2,6 +2,7 @@
 
 'use client' // if you use app dir, don't forget this line
 
+import { cn } from "@/lib/utils";
 import { IDashboard } from "@/types/dashboard.type";
 import { ApexOptions } from "apexcharts";
 import dynamic from "next/dynamic";
@@ -26,11 +27,11 @@ interface ChartProps {
     | "treemap";
   datasource?: IDashboard[],
   options?: ApexOptions,
-  series?: ApexOptions["series"]
+  series?: ApexOptions["series"],
+  className?: string;
 }
 export function Chart({
   type = 'line',
-  datasource,
   options = {
     chart: {
       id: 'apexchart'
@@ -43,6 +44,7 @@ export function Chart({
     name: 'series-1',
     data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
   }],
+  className,
 }: ChartProps) {
 
   const getWidth = () => {
@@ -53,8 +55,11 @@ export function Chart({
   };
 
   return (
-    <div>
-      <ApexChart type={type} options={options} series={series} height={300} width={getWidth()} />
+    <div className={cn(
+      'border-2 rounded-lg p-4 bg-white',
+      className
+    )}>
+      <ApexChart type={type} options={options} series={series} height={315} width={getWidth()} />
     </div>
   )
 

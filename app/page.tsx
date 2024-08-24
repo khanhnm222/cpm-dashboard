@@ -167,15 +167,18 @@ export default async function Home() {
     }
   };
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className='flex h-[calc(100vh_-_64px)] md:flex-col sm:flex-col flex-col lg:flex-col gap-8 items-center'>
+    <main className="flex flex-col items-center justify-between p-24 bg-[#e5e7eb]">
+      <div className='flex h-[calc(100vh_-_64px)] md:flex-col sm:flex-col flex-col lg:flex-row gap-8 items-center bg-[#e5e7eb]'>
         <Chart
           type='donut'
           options={donutState.options as any}
           series={donutState.series}
+          className='flex self-start'
         />
-        <Chart type='line' series={byteState.series as any} options={byteState.options as any} />
-        <Chart type='line' series={cpuState.series as any} options={cpuState.options as any} />
+        <div className='flex flex-col self-start gap-8'>
+          <Chart type='line' series={byteState.series as any} options={byteState.options as any} />
+          <Chart type='line' series={cpuState.series as any} options={cpuState.options as any} />
+        </div>
       </div>
     </main>
   );
