@@ -70,7 +70,7 @@ const NotificationPoper = () => {
                     <DialogHeader>
                       <DialogTitle>Notice of Abnormality</DialogTitle>
                       <DialogDescription>
-                        <Image src={`data:image/jpeg;base64,${data?.image_base64}` || ''} width={1200} height={400} alt=''/>
+                        <Image src={`data:image/jpeg;base64,${data?.image_base64}` || ''} width={1200} height={500} alt=''/>
                       </DialogDescription>
                     </DialogHeader>
                   </DialogContent>
